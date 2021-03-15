@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-bind-class绑定</title>
+	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<img v-bind:src="imgurl" alt="">
+		<div :class="className">{{message}}</div>
+	</div>
+</body>
+</html>
+<script>
+	// 动态绑定数据
+	const app = new Vue({
+		el:"#app",
+		data:{
+			imgurl:"https://gskd.sdoprofile.com/QuShopping/cs/cs_banner1.jpg",
+			link:"http://www.baidu.com",
+			className:"box",
+			message:"内容盒子"
+		}
+	})
+</script>

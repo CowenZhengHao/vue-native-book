@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-bind-class绑定</title>
+	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div>{{message}}</div>
+		<h2 :style='{fontSize:"50px"}'>{{message}}</h2>
+		<h1 :style='{fontSize:fontsize}'>{{message}}</h1>
+	</div>
+</body>
+</html>
+<script>
+	// 动态绑定数据（对象语法）
+	const app = new Vue({
+		el:"#app",
+		data:{
+			message:"内容盒子",
+			fontsize:"100px"
+		}
+	});
+</script>
