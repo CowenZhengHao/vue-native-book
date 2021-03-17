@@ -2,28 +2,28 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>v-bind-class绑定</title>
+	<title>Document</title>
 	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
-	<style>
-		.color{
-			color:#ff0000;
-			font-weight: bold;
-		}
-	</style>
 </head>
 <body>
 	<div id="app">
-		<div :class="classes">{{message}}</div>
+		<!-- 3. 使用组件-->
+		<mycom></mycom>
 	</div>
 </body>
 </html>
 <script>
-	// 动态绑定数据
+	// 1. 创建组件
+	const component = Vue.extend({
+		template:`<div>这里是一个模板</div>`
+	})
+
+	// 2. 注册组件
+	Vue.component('mycom',component);
 	const app = new Vue({
-		el:"#app",
+		el:'#app',
 		data:{
-			message:"内容盒子",
-			classes:['color','bold']
+
 		}
-	});
+	})
 </script>

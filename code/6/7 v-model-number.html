@@ -2,28 +2,22 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>v-bind-class绑定</title>
+	<title>Document</title>
 	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
-	<style>
-		.color{
-			color:#ff0000;
-			font-weight: bold;
-		}
-	</style>
 </head>
 <body>
 	<div id="app">
-		<div :class="classes">{{message}}</div>
+		<input type="number" v-model.number='age' >
+		<h2>{{age}}</h2>
 	</div>
 </body>
 </html>
 <script>
-	// 动态绑定数据
+	// 监控number数据类型
 	const app = new Vue({
-		el:"#app",
+		el:'#app',
 		data:{
-			message:"内容盒子",
-			classes:['color','bold']
+			age:''
 		}
-	});
+	})
 </script>

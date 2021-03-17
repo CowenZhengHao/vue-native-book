@@ -2,26 +2,26 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>computed attribute</title>
+	<title>Document</title>
 	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
 </head>
 <body>
 	<div id="app">
-		{{total}}
+		<mycom></mycom>
 	</div>
+	<template id="header">
+		<header>
+			<h1>这里是头部</h1>
+		</header>
+	</template>
 </body>
 </html>
 <script>
-	// 计算属性
 	const app = new Vue({
-		el:"#app",
-		data:{
-			price:55,
-			counts:40
-		},
-		computed:{
-			total:function(){
-				return this.price*this.counts
+		el:'#app',
+		components:{
+			mycom:{
+				template:'#header'
 			}
 		}
 	})

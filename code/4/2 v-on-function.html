@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello vue</title>
+	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h1>{{counts}}</h1>
+		<!-- 传参 -->
+		<button v-on:click='increament(2)'>增加</button>
+		<!-- 默认传递事件对象 -->
+		<button @click='descreament'>减少</button>
+		<!-- 使用$event表示事件对象传递 -->
+		<button @click='mutify(3,$event)'>乘法</button>
+	</div>
+</body>
+</html>
+<script>
+	// 传递参数
+	const app = new Vue({
+		el:"#app",
+		data:{
+			counts:0
+		},
+		methods:{
+			increament:function(num){
+				this.counts+=num;
+			},
+			descreament:function(e){
+				this.counts-=100;
+			},
+			mutify:function(num,event){
+				this.counts*=num;
+				console.log(event);
+			}
+		}
+	})
+</script>

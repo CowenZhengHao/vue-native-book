@@ -2,26 +2,21 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>computed attribute</title>
+	<title>Document</title>
 	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
 </head>
 <body>
 	<div id="app">
-		{{total}}
+		<button @click.once='onceClick'>按钮</button>
 	</div>
 </body>
 </html>
 <script>
-	// 计算属性
 	const app = new Vue({
-		el:"#app",
-		data:{
-			price:55,
-			counts:40
-		},
-		computed:{
-			total:function(){
-				return this.price*this.counts
+		el:'#app',
+		methods:{
+			onceClick:function(){
+				console.log('7 v-on-once.html');
 			}
 		}
 	})

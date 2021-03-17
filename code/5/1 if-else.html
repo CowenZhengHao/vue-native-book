@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h1 v-if='isshow'>{{message}}</h1>
+		<h1 v-else>隐藏了</h1>
+		<button @click='toggleChange'>切换按钮</button>
+	</div>
+</body>
+</html>
+<script>
+	const app = new Vue({
+		el:'#app',
+		data:{
+			message:'这里是内容',
+			isshow:true
+		},
+		methods:{
+			toggleChange:function(){
+				this.isshow=!this.isshow;
+			}
+		}
+	})
+</script>

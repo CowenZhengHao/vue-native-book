@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h1 v-if='score>=90'>优秀</h1>
+		<h1 v-else-if='score>=80'>良好</h1>
+		<h1 v-else-if='score>=70'>中等</h1>
+		<h1 v-else-if='score>=60'>及格</h1>
+		<h1 v-else>不及格</h1>
+		<input type="text" @keyup='enterScore'>
+	</div>
+</body>
+</html>
+<script>
+	const app = new Vue({
+		el:'#app',
+		data:{
+			score:0
+		},
+		methods:{
+			enterScore:function(e){
+				this.score=e.target.value;
+			}
+		}
+	})
+</script>

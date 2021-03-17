@@ -2,26 +2,26 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>computed attribute</title>
+	<title>Document</title>
 	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
 </head>
 <body>
 	<div id="app">
-		{{total}}
+		<h2 v-show='isshow'>{{message}}</h2>
+		<button @click='toggleChange'>切换</button>
 	</div>
 </body>
 </html>
 <script>
-	// 计算属性
 	const app = new Vue({
-		el:"#app",
+		el:'#app',
 		data:{
-			price:55,
-			counts:40
+			message:'这里是内容',
+			isshow:false
 		},
-		computed:{
-			total:function(){
-				return this.price*this.counts
+		methods:{
+			toggleChange:function(){
+				this.isshow=!this.isshow;
 			}
 		}
 	})
