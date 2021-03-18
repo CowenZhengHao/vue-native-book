@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<list></list>
+	</div>
+</body>
+</html>
+<!-- 子组件模板 -->
+<template id="item">
+	<li>
+		<span>{{item}}</span>
+		<button @click='itemsclick'>点击</button>
+	</li>
+</template>
+
+<!-- 父组件模板 -->
+<template id="list">
+	<ul>
+		<item v-for='item in list' :item='item' @itemclick='clickhandle(item)'></item>
+	</ul>
+</template>
+<script>
+	const item=Vue.extend({
+		template:'#item',
+		props:{
+			item:String
+		},
+		methods:{
+			itemsclick:function(item){
+				this.$emit('itemclick',item);
+			}
+		}
+	})
+
+	const list=Vue.extend({
+		template:'#list',
+		data:function(){
+			return {
+				list:["AA","BB","CC","DD","EE"]
+			}
+		},
+		components:{
+			item:item
+		},
+		methods:{
+			clickhandle:function(item){
+				console.log(item+'子组件按钮被点击');
+			}
+		}
+	})
+
+	const app = new Vue({
+		el:'#app',
+		components:{
+			list:list
+		}
+	})
+</script>
