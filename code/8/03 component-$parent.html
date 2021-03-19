@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<comcontent></comcontent>
+	</div>
+</body>
+</html>
+<template id="comcontent">
+	<section>
+		<h1>这里是内容区域</h1>
+		<concontent></concontent>	
+	</section>
+</template>
+
+<template id="concontent">
+	<div>
+		<h2>这里是子组件标题</h2>
+		<button @click='showmessage'>按钮点击</button>
+	</div>
+</template>
+<script>
+	// $parent可以访问当前组件的上一级父组件  $root则是直接访问根组件
+	const app = new Vue({
+		el:'#app',
+		components:{
+			comcontent:{
+				template:'#comcontent',
+				components:{
+					concontent:{
+						template:'#concontent',
+						methods:{
+							showmessage:function(){
+								console.log(this.$parent);
+								console.log(this.$root);
+							}
+						}
+					}
+				}
+			}
+		}
+	})
+</script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+</head>
+<body>
+	<h1>具名组件插槽的使用</h1>
+	<div id="app">
+		<comp>
+			<button slot='left'>按钮</button>
+		</comp>
+		<comp>
+			<h2 slot='right'>这里是标题</h2>
+		</comp>	
+	</div>
+</body>
+</html>
+<template id="comp">
+	<div class="comp-wrap">
+		<h1>这里是组件插槽</h1>
+		<slot name='left'></slot>	
+		<slot><p>默认值1</p></slot>	
+		<slot name='right'><p>默认值2</p></slot>	
+	</div>
+</template>
+<script type="text/javascript">
+	const app = new Vue({
+		el:'#app',
+		components:{
+			comp:{
+				template:'#comp'
+			}
+		}
+	})
+</script>

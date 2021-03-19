@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<compheader ref='header'></compheader>
+		<compcontent ref='content'></compcontent>
+		<compfooter ref='footer'></compfooter>
+		<button @click='getref'>获取子组件</button>		
+	</div>
+</body>
+</html>
+<template id="header">
+	<header>
+		<h1>头部</h1>
+	</header>
+</template>
+<template id="content">
+	<section>
+		内容
+	</section>
+</template>
+<template id="footer">
+	<footer>
+		<h2>底部信息</h2>
+	</footer>
+</template>
+<script>
+	// 使用$refs可以访问到所有的组件引用
+	const app = new Vue({
+		el:'#app',
+		methods:{
+			getref:function(){
+				console.log(this.$refs);
+				this.$refs.content.showmessage();
+			}
+		},
+		components:{
+			compheader:{
+				template:"#header"
+			},
+			compcontent:{
+				template:'#content',
+				methods:{
+					showmessage:function(){
+						console.log(`content的方法`)
+					}
+				}
+			},
+			compfooter:{
+				template:'#footer'
+			}
+		}
+	})
+</script>

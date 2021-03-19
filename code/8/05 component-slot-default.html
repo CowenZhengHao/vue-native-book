@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+</head>
+<body>
+	<h1>组件插槽默认值的基本使用</h1>
+	<h4>
+		在slot元素中间添加默认值即可。
+	</h4>
+	<div id="app">
+		<comp>
+			<button>按钮</button>
+		</comp>
+		<comp>
+			<h2>这里是标题</h2>
+		</comp>
+		<comp></comp>	
+	</div>
+</body>
+</html>
+<template id="comp">
+	<div class="comp-wrap">
+		<h1>这里是组件插槽</h1>
+		<slot>
+			<p>这里是默认值</p>
+		</slot>	
+	</div>
+</template>
+<script type="text/javascript">
+	const app = new Vue({
+		el:'#app',
+		components:{
+			comp:{
+				template:'#comp'
+			}
+		}
+	})
+</script>

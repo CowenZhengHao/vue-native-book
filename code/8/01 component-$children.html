@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<comp></comp>
+		<button @click='clickHandle'>按钮点击</button>
+	</div>
+</body>
+</html>
+<template id="comp">
+	<h1>这里是子组件</h1>
+</template>
+<script>
+	// 使用$children可以访问到父组件下面的子组件列表，甚至调用子组件的方法
+	const app = new Vue({
+		el:'#app',
+		methods:{
+			clickHandle:function(){
+				console.log(this.$children);
+				this.$children[0].showMessage();
+			}
+		},
+		components:{
+			comp:{
+				template:'#comp',
+				methods:{
+					showMessage:function(){
+						console.log('子组件showMessage');
+					}
+				}
+			}
+		}
+	})
+</script>
