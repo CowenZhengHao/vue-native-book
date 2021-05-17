@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>vue全局方法</title>
+</head>
+<body>
+    <h1>Vue生命周期</h1>
+    <div id="app">
+        <ol>
+            <li v-for="(role,index) in roles" key="index">
+                姓名：{{role.name}}&nbsp;&nbsp;年龄：{{role.age}}
+            </li>
+        </ol>
+        <input ref="nameInput" type="text" placeholder="请输入名字">
+        <input ref="ageInput" type="text" placeholder="情输入年龄">
+        <button v-on:click="addEvent">添加</button>
+    </div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            roles:[
+                {
+                    name:"Cowen",
+                    age:"33"
+                },
+                {
+                    name:"Tim",
+                    age:"23"
+                },
+                {
+                    name:"HanMeiMei",
+                    age:"23"
+                }
+            ]
+        },
+        methods:{
+            addEvent(){
+                const name=this.$refs.nameInput.value,
+                      age=this.$refs.ageInput.value;
+                this.roles.push({name,age});
+            }
+        },
+        mounted() {
+            console.log("sdd")
+        },
+        created:function(){
+            console.log(`组件被创建`);
+        },
+        updated:function(){
+            console.log(`组件被更新`);
+        }
+    });
+
+    console.log(app);
+</script>

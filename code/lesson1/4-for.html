@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>列表渲染</title>
+</head>
+<body>
+    <h1>列表渲染</h1>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in list" key="index">
+                <dl>
+                    <dt>{{item.name}}</dt>
+                    <dd>年龄：{{item.age}}</dd>
+                    <dd>籍贯：{{item.address}}</dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            list:[
+                {
+                    name:"cowen",
+                    age:33,
+                    address:"上海市浦东新区"
+                },
+                {
+                    name:"Jim",
+                    age:26,
+                    address:"北京东直门"
+                },
+                {
+                    name:"MeiMie",
+                    age:22,
+                    address:"东京"
+                }
+            ]
+        }
+    })
+</script>

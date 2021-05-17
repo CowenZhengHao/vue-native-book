@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>组件复用</title>
+    <style>
+        button{
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>组件复用</h1>
+    <div id="app">
+        <counter></counter>
+        <counter></counter>
+        <counter></counter>
+        <counter></counter>
+        <counter></counter>
+    </div>
+</body>
+</html>
+<script>
+    // 定义的组件
+    Vue.component('counter',{
+        data:function(){
+            return {
+                counts:0
+            }
+        },
+        methods:{
+            addEvent(){
+                this.counts++;
+            }
+        },
+        template:'<button @click="addEvent">点击{{counts}}次</button>'
+    });
+    // 入口
+    var app = new Vue({
+        el:"#app"
+    });
+</script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>vue中的计算属性</title>
+</head>
+<body>
+    <h1>vue中的计算属性</h1>
+    <div id="app">
+        当前共有{{getsize}}条数据
+    </div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            roles:[
+                {
+                    name:"Cowen",
+                    age:"33"
+                },
+                {
+                    name:"Tim",
+                    age:"23"
+                },
+                {
+                    name:"HanMeiMei",
+                    age:"23"
+                }
+            ]
+        },
+        computed:{
+            getsize:function(){
+                return this.roles.length;
+            }
+        }
+    });
+</script>

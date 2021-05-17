@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>vue绑定内联样式</title>
+</head>
+<body>
+    <h1>Vue绑定内联样式</h1>
+    <div id="app">
+        <h2 :style="styleObj">这里是一段文字</h2>
+    </div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            styleObj:{
+                color:"#ff0000",
+                textAlign:"center",
+                border:"1px solid #ff0000",
+                padding:"30px"
+            }
+        }
+    });
+</script>
