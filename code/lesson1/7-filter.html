@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>过滤器</title>
+</head>
+<body>
+    <h1>过滤器</h1>
+    <div id="app">
+        {{date | formatDate}}
+    </div>
+</body>
+</html>
+<script>
+    var padDate=function(value){
+        return value<10?'0'+value:value
+    }
+    var app = new Vue({
+        el:"#app",
+        data:{
+            date:new Date()
+        },
+        filters:{
+            formatDate:function(value){
+                var date=new Date(value),
+                    year=date.getFullYear(),
+                    month=padDate(date.getMonth()+1),
+                    day=padDate(date.getDate()),
+                    hours=padDate(date.getHours()),
+                    minutes=padDate(date.getMinutes()),
+                    seconds=padDate(date.getSeconds());
+                return year+'-'+month+'-'+day+' '+hours+":"+minutes+":"+seconds;
+            }
+        },
+        mounted:function(){
+            var _this=this;
+            this.timer=setInterval(function(){
+                _this.date=new Date();
+            },1000)
+        },
+        beforeDestroy:function(){
+            if(this.timer){
+                clearInterval(this.timer);
+            }
+        }
+    })
+</script>
