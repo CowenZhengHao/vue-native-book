@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>事件处理</title>
+</head>
+<body>
+    <h1>事件处理</h1>
+    <div id="app">
+        <a href="http://www.baidu.com" @click.prevent="clickEvent">链接跳转</a>
+    </div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el:"#app",
+        methods:{
+            clickEvent(){
+                console.log('阻止默认事件');
+            }
+        }
+    })
+</script>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>事件处理</title>
+</head>
+<body>
+    <h1>事件处理</h1>
+    <div id="app">
+        <button @click="clickEvent">不传递参数</button>
+        <button @click="clickEvent2('打印文本')">传递参数</button>
+        <button @click="clickEvent3('打印文本',$event)">传递参数/事件对象</button>
+    </div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el:"#app",
+        methods:{
+            clickEvent(){
+                console.log('不需要传递参数');
+            },
+            clickEvent2(str){
+                console.log(str)
+            },
+            clickEvent3(str,e){
+                console.log(str);
+                console.log(e);
+            }
+        }
+    })
+</script>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>全局组件</title>
+</head>
+<body>
+    <h1>全局组件</h1>
+    <div id="app">
+        <title-component title="这里是标题"></title-component>
+    </div>
+</body>
+</html>
+<script>
+    // 注册全局组件
+    Vue.component('title-component',{
+        props:['title'],
+        template:`<h2>{{title}}</h2>`
+    })
+    var app = new Vue({
+        el:"#app"
+    })
+</script>

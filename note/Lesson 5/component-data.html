@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>组件中的data属性</title>
+</head>
+<body>
+    <h1>组件中的data属性</h1>
+    <div id="app">
+        <Counter></Counter>
+        <Counter></Counter>
+        <Counter></Counter>
+        <p>{{message}}</p>
+    </div>
+</body>
+</html>
+<template id="con">
+    <div class="con-wrap">
+        <h3>当前计数次数：{{counts}}</h3>
+        <button @click="addEvent">增加+</button>
+        <button @click="desEvent">减少-</button>
+    </div>
+</template>
+<script>
+    // 组件
+    const counter=Vue.extend({
+        template:"#con",
+        data(){
+            return {
+                counts:0
+            }
+        },
+        methods: {
+            addEvent(){
+                this.counts++;
+            },
+            desEvent(){
+                this.counts--;
+            }   
+        }
+    })
+    // 实例化vue
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"这里是一段信息"
+        },
+        components:{
+            Counter:counter
+        }
+    })
+</script>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>父子组件</title>
+</head>
+
+<body>
+    <h1>父子组件</h1>
+    <div id="app">
+        <parentcon></parentcon>
+    </div>
+</body>
+
+</html>
+<script>
+    // 注册子组件
+    const sonCon = Vue.extend({
+        props: ['content'],
+        template: `<div class="son">{{content}}</div>`
+    });
+    // 注册父组件
+    const parentCon = Vue.extend({
+        template: `<div class="parent">
+                <soncon content="这里是子组件的内容"></soncon>
+            </div>`,
+        components: {
+            soncon: sonCon
+        }
+    })
+    var app = new Vue({
+        el: "#app",
+        components: {
+            parentcon: parentCon
+        }
+    })
+</script>
