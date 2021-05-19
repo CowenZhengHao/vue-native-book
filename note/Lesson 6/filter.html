@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>过滤器</title>
+</head>
+
+<body>
+    <h1>过滤器</h1>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in list" :key="index">
+                <h4>{{item.name}}</h4>
+                <p>{{item.price || getprice}}</p>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data:{
+            list:[
+                {
+                    name:"JavaScript高级编程",
+                    price:45
+                },
+                {
+                    name:"CSS世界",
+                    price:55
+                }
+            ]
+        },
+        filters:{
+            getprice:function(price){
+                return price.toFixed(2);
+            }
+        }
+    })
+</script>

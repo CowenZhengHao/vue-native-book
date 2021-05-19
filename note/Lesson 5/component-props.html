@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>父组件向子组件传值</title>
+</head>
+<body>
+    <h1>父组件向子组件传值</h1>
+    <div id="app">
+        <ul>
+            <con v-for="(name,index) in list" :key="index" :name="name"></con>
+        </ul>
+    </div>
+</body>
+<template id="con">
+    <li>当前人物名称为：{{name}}</li>
+</template>
+</html>
+<script>
+    // 注册组件
+    const con = Vue.extend({
+        props:["name"],
+        template:"#con"
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+            list:["小敏","小明","小梅"]
+        },
+        components:{
+            con
+        }
+    })
+</script>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>具名插槽的基本使用</title>
+</head>
+<body>
+    
+    <h1>具名插槽的基本使用</h1>
+    <div id="app">
+        <titlecon>
+            <span slot="txt">修改文本</span>
+        </titlecon>
+        <titlecon>
+            <b slot="icon">$</b>
+        </titlecon>
+    </div>
+</body>
+<template id="con">
+    <h1>
+        标题
+        <slot name="txt">
+            <span>默认值</span>
+        </slot>
+        <slot name="icon">
+            <i>*</i>
+        </slot>
+    </h1>
+</template>
+</html>
+<script>
+    const titlecon=Vue.extend({
+        template:'#con'
+    });
+    var app = new Vue({
+        el:"#app",
+        components:{
+            titlecon
+        }
+    })
+</script>

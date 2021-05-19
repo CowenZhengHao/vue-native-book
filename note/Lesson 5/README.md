@@ -139,3 +139,115 @@
 
 在vue实例中，数据的定义是一个对象，但是在组件中，无法访问到实例的数据，组件有自己的数据data，但是不是个对象，只能是一个函数。
 
+**6、父组件与子组件通信：**
+
+父组件向子组件通信，是通过`props`向子组件传递的。
+
+```html
+<div id="app">
+    <ul>
+        <con v-for="(name,index) in list" :key="index" :name="name"></con>
+    </ul>
+</div>
+<template id="con">
+    <li>当前人物名称为：{{name}}</li>
+</template>
+<script>
+    // 注册组件
+    const con = Vue.extend({
+        props:["name"],
+        template:"#con"
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+            list:["小敏","小明","小梅"]
+        },
+        components:{
+            con
+        }
+    })
+</script>
+```
+
+**7、子组件与父组件通信：**
+
+子组件通过自定义事件通知父组件触发相关操作。子组件通过`this.$emit()`触发父组件事件完成回调。
+
+```html
+<div id="app">
+    <con @getlist="getlistevent" v-for="(category,index) in categorys" :key="index" :category="category"></con>
+</div>
+<template id="con">
+    <button @click="getlist(category)">{{category}}</button>
+</template>
+<script>
+    // 注册子组件
+    const con = Vue.extend({
+        props: {
+            category: {
+                type: String
+            }
+        },
+        template: "#con",
+        methods: {
+            getlist(category) {
+                this.$emit('getlist', category)
+            }
+        }
+    });
+    var app = new Vue({
+        el: "#app",
+        data: {
+            categorys: ["家电", "汽车", "食品"]
+        },
+        components: {
+            con
+        },
+        methods: {
+            getlistevent(name) {
+                console.log(`父组件----` + name)
+            }
+        }
+    })
+</script>
+```
+
+**8、父子组件的访问方式：**
+
+有时候我们需要父组件直接访问子组件，子组件直接访问父组件，或者子组件访问根组件。
+
+- 父组件访问子组件：使用`$children`或者`$refs`。
+- 子组件访问父组件：使用`$parent`。
+
+```javascript
+// 注册子组件
+const titlecon=Vue.extend({
+    name:"title",
+    template:"#title",
+    props:['title']
+});
+const menucon=Vue.extend({
+    title:"menu",
+    template:"#menu",
+    props:['menu']
+});
+var app = new Vue({
+    el:"#app",
+    components:{
+        titlecon,
+        menucon
+    },
+    methods: {
+        getson(){
+            console.log(this.$children[1]);
+            console.log(this.$refs.menu)
+        }   
+    }
+})
+```
+
+
+
+
+

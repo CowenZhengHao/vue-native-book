@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>作用域插槽</title>
+</head>
+<body>
+    <h1>作用域插槽的基本使用</h1>
+    <div id="app">
+        <!-- 作用域显示 -->
+        <con>
+            <ul slot-scope="slot">
+                <li v-for="(item,index) in slot.data" :key="index">{{item}}</li>
+            </ul>
+        </con>
+        <!-- 默认显示 -->
+        <con></con>
+    </div>
+</body>
+<template id="con">
+    <div class="con-wrap">
+        <slot :data="list">
+            <h4 v-for="(item,index) in list" :key="index">{{item}}</h4>
+        </slot>
+    </div>
+</template>
+</html>
+<script>
+    const con = Vue.extend({
+        template: '#con',
+        data() {
+            return {
+                list: ["应用", "小程序", "网页"]
+            }
+        }
+    });
+    var app = new Vue({
+        el: "#app",
+        components: {
+            con
+        }
+    })
+</script>

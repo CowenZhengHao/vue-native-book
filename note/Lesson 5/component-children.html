@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>获取子组件列表</title>
+</head>
+<body>
+    <h1>获取子组件列表</h1>
+    <div id="app">
+        <titlecon title="标题"></titlecon>
+        <menucon menu="目录" ref="menu"></menucon>
+        <button @click="getson">获取子组件</button>
+    </div>
+</body>
+<template id="title">
+    <h2>{{title}}</h2>
+</template>
+<template id="menu">
+    <h3>{{menu}}</h3>
+</template>
+</html>
+<script>
+    // 注册子组件
+    const titlecon=Vue.extend({
+        name:"title",
+        template:"#title",
+        props:['title']
+    });
+    const menucon=Vue.extend({
+        title:"menu",
+        template:"#menu",
+        props:['menu']
+    });
+    var app = new Vue({
+        el:"#app",
+        components:{
+            titlecon,
+            menucon
+        },
+        methods: {
+            getson(){
+                console.log(this.$children[1]);
+                console.log(this.$refs.menu)
+            }   
+        }
+    })
+</script>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>子组件向父组件传值</title>
+</head>
+
+<body>
+    <h1>子组件向父组件传值</h1>
+    <div id="app">
+        <con @getlist="getlistevent" v-for="(category,index) in categorys" :key="index" :category="category"></con>
+    </div>
+</body>
+<template id="con">
+    <button @click="getlist(category)">{{category}}</button>
+</template>
+
+</html>
+<script>
+    // 注册子组件
+    const con = Vue.extend({
+        props: {
+            category: {
+                type: String
+            }
+        },
+        template: "#con",
+        methods: {
+            getlist(category) {
+                this.$emit('getlist', category)
+            }
+        }
+    });
+    var app = new Vue({
+        el: "#app",
+        data: {
+            categorys: ["家电", "汽车", "食品"]
+        },
+        components: {
+            con
+        },
+        methods: {
+            getlistevent(name) {
+                console.log(`父组件----` + name)
+            }
+        }
+    })
+</script>
