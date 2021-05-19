@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>绑定类名</title>
+    <style>
+        h4{
+            transition: all 0.3s ease-out;
+        }
+        .active{
+            background-color: red;
+            color:#fff;
+        }
+        .padding{
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>绑定类名</h1>
+    <div id="app">
+        <h4 :class="{active:isactive,padding:ispadding}">这里是一个标题</h4>
+        <button @click="switchEvent">切换</button>
+    </div>
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data:{
+            isactive:false,
+            ispadding:true
+        },
+        methods:{
+            switchEvent(){
+                this.isactive=!this.isactive;
+                this.ispadding=!this.ispadding;
+            }
+        }
+    })
+</script>
