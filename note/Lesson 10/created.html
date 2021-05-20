@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>created组件创建后</title>
+</head>
+
+<body>
+    <h1>created组件创建后</h1>
+    <div id="app">
+        <h2>{{message}}</h2>
+    </div>
+</body>
+
+</html>
+<template id="con">
+    <h2>{{message}}</h2>
+</template>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            message: "这里是一段信息"
+        },
+        created() {
+            // 组件被创建，可以访问到this、methods、computed等方法和属性
+            // 无法访问到实例挂载对象 this.$el
+            console.log(this)   
+        }
+    })
+</script>

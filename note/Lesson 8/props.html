@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>props基本使用</title>
+</head>
+
+<body>
+    <h1>props基本使用</h1>
+    <div id="app">
+        <list :books="list" :counts="counts"></list>
+        <button @click="addBook">添加</button>
+    </div>
+</body>
+<template id="item">
+    <li>
+        <h4>书名：{{book.name}}</h4>
+        <p>价格：{{book.price | bookprice}}</p>
+    </li>
+</template>
+<template id="list">
+    <div class="list-wrap">
+        <ul>
+            <bookitem v-for="(book,index) in books" :key="index" :book="book"></bookitem>    
+        </ul>
+        <p>一共有<strong>{{counts}}</strong>项数据。</p>
+    </div>
+</template>
+</html>
+<script>
+    // Item 组件
+    const bookitem=Vue.extend({
+        template:"#item",
+        props:['book'],
+        filters:{
+            bookprice(price){
+                return price.toFixed(2);
+            }
+        }
+    });
+    // List 组件
+    const list=Vue.extend({
+        template:"#list",
+        props:['books','counts'],
+        components:{
+            bookitem
+        }
+    });
+    var app = new Vue({
+        el: "#app",
+        components:{
+            list
+        },
+        data:{
+            list:[
+                {
+                    name:"CSS世界",
+                    price:46
+                },
+                {
+                    name:"JavaScript高级编程",
+                    price:98
+                },
+                {
+                    name:"NodeJs实战",
+                    price:59
+                }
+            ]
+        },
+        computed:{
+            counts(){
+                return this.list.length
+            }
+        },
+        methods: {
+            addBook(){
+                const book={name:"大话数据结构",price:106};
+                this.list.push(book);
+            }   
+        }
+    })
+</script>
