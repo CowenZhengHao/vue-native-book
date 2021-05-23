@@ -1,11 +1,8 @@
 <template>
   <div class="wrap">
     <h1>{{message}}</h1>
-    <!-- <router-link to="/home" replace>首页</router-link>
-    <router-link to="/about" replace>关于</router-link> -->
-    <button @click="goEvent('/home')">首页</button>
-    <button @click="goEvent('/about')">关于</button>
     <router-link to="/user/cowen">用户信息</router-link>
+    <router-link :to="{path:'/profile',query:{name:'cowen',age:33}}">用户档案</router-link>
     <router-view></router-view>
   </div>
 </template>
@@ -16,11 +13,6 @@ export default {
     data(){
         return {
             message:'这里是路由相关知识'
-        }
-    },
-    methods:{
-        goEvent(path){
-            this.$router.replace(path);
         }
     }
 }
