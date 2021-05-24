@@ -2,6 +2,7 @@
   <div id="app">
     <h2>{{message}}</h2>
     <Counter />
+    <p>当前计数值为：{{$store.state.counts}}</p>
   </div>
 </template>
 
@@ -21,4 +22,7 @@ export default {
 </script>
 
 <style>
+#app{
+  padding-top: 60px;
+}
 </style>
