@@ -1,56 +1,140 @@
-## KEEP-ALIVE保持组件状态
+## VUEX的基本配置
 
-keep-alive是vue内置的一个组件，可以使被包含的组件保留状态，或避免重新渲染。
+Vuex是一个专门为vue.js应用程序开发的状态管理模式。
 
 **1、基本使用：**
 
-`keep-alive`组件包裹`router-view`，使得`router-view`包裹的组件不会被重复创建和销毁，提高应用的性能。
+类似于vue-router，vuex的使用也是需要引入、定义store和导出store。
 
 ```vue
-<template>
-  <div class="wrap">
-    <h1>{{message}}</h1>
-    <router-link to="/home">首页</router-link>
-    <router-link to="/about">关于我们</router-link>
-    <keep-alive>
-        <router-view></router-view>
-    </keep-alive>
-  </div>
-</template>
+// store定义
+import Vue from 'vue';
+import Vuex from 'vuex';
+Vue.use(Vuex);
+const store = new Vuex.Store({});
+export default store
+
+// store引入并使用
+import Vue from 'vue'
+import App from './App.vue'
+import store from './store';
+new Vue({
+  store,
+  render: h => h(App),
+}).$mount('#app')
 ```
 
-**2、基本配置：**
+**2、state：**
 
-- `include` - 字符串或正则表达式。只有名称匹配的组件会被缓存。
-- `exclude` - 字符串或正则表达式。任何名称匹配的组件都不会被缓存。
-- `max` - 数字。最多可以缓存多少组件实例。
+vuex定义的实例中，通过state配置管理整个应用的参数值，state管理的值在应用下的所有组件中都能被获取：
 
-**3、对应事件：**
-
-当组件在 `<keep-alive>` 内被切换，它的 `activated` 和 `deactivated` 这两个生命周期钩子函数将会被对应执行。
+- 模板中获取使用`$store.state`对象获取；
+- js中使用`this.$store.state`对象获取。
 
 ```vue
-export default {
-    name:"about",
-    data(){
-        return {
-            path:'/home/detail'
+// state定义
+import Vue from 'vue';
+import Vuex from 'vuex';
+Vue.use(Vuex);
+const store = new Vuex.Store({
+    state:{
+        counts:0
+    }
+});
+export default store
+
+// state获取
+<h4>{{$store.state.counts}}</h4>
+```
+
+**3、mutation：**
+
+mutation是更改store状态的唯一方式，在vuex修改state的值，要通过mutation定义的方法进行修改，这些修改都是同步的。
+
+mutation中定义的方法中会包含一个`state`参数，该参数就是用来获取当前应用的`state`对象值。
+
+mutation中定义的方法在组件中通过`this.$store.commit(eventname)`进行调用。
+
+```vue
+// mutation定义的方法
+import Vue from 'vue';
+import Vuex from 'vuex';
+Vue.use(Vuex);
+const store = new Vuex.Store({
+    state:{
+        counts:0
+    },
+    mutations:{
+        addEvent(state){
+            state.counts++;
+        },
+        descEvent(state){
+            state.counts--;
         }
-    },
-    created(){
-        console.log("home is created");
-    },
-    destroyed(){
-        console.log("home is destroyed")
-    },
-    activated(){
-        // 该函数只有组件被keep-alive保持状态时才会有效
-        this.$router.push(this.path);
-    },
-    beforeRouteLeave (to, from, next) {
-        this.path=this.$route.path;
-        next();
+    }
+});
+export default store
+
+// mutation中方法的调用
+export default {
+    name:'counter',
+    methods:{
+      addEvent(){
+        this.$store.commit('addEvent');
+      },
+      descEvent(){
+        this.$store.commit('descEvent')
+      }
     }
 }
 ```
+
+**4、getters：**
+
+vuex中的getters类似于组件中的计算属性，可以对当前应用中state的值进行加工处理再返回给应用。
+
+getters的使用`#store.getters`对象中获取。
+
+getters不但可以定义为属性，也可以定义为函数，直接返回一个函数。
+
+```vue
+import Vue from 'vue';
+import Vuex from 'vuex';
+import moment from 'moment';
+Vue.use(Vuex);
+
+const store = new Vuex.Store({
+    state:{
+        list:[
+            {
+                name:"Kebe Byrant",
+                age:33
+            },
+            {
+                name:"Paul Jamas",
+                age:30
+            },
+            {
+                name:"Tim James",
+                age:15
+            }
+        ]
+    },
+    getters:{
+		// 默认参数为state和getters,可以拿到定义的其他getters的值
+        getlitter(state,getters){
+            return state.list.filter(item=>item.age<=30);
+        },
+        getmore(state){
+            return (age)=>{
+                return state.list.filter(item=>item.age>age)
+            }
+        }
+    }
+});
+
+export default store
+```
+
+> `getters`中的定义的属性中，默认参数为state和getters，不但可以拿到当前vuex实例的state，也可以拿到当前vuex的getters属性值。
 

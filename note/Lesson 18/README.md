@@ -1,27 +1,22 @@
-## VUEX的基本配置
+## KEEP-ALIVE保持组件状态
 
-Vuex是一个专门为vue.js应用程序开发的状态管理模式。
+keep-alive是vue内置的一个组件，可以使被包含的组件保留状态，或避免重新渲染。
 
 **1、基本使用：**
 
-类似于vue-router，vuex的使用也是需要引入、定义store和导出store。
+`keep-alive`组件包裹`router-view`，使得`router-view`包裹的组件不会被重复创建和销毁，提高应用的性能。
 
 ```vue
-// store定义
-import Vue from 'vue';
-import Vuex from 'vuex';
-Vue.use(Vuex);
-const store = new Vuex.Store({});
-export default store
-
-// store引入并使用
-import Vue from 'vue'
-import App from './App.vue'
-import store from './store';
-new Vue({
-  store,
-  render: h => h(App),
-}).$mount('#app')
+<template>
+  <div class="wrap">
+    <h1>{{message}}</h1>
+    <router-link to="/home">首页</router-link>
+    <router-link to="/about">关于我们</router-link>
+    <keep-alive>
+        <router-view></router-view>
+    </keep-alive>
+  </div>
+</template>
 ```
 
 **2、基本配置：**

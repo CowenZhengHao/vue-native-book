@@ -46,8 +46,8 @@
 
 [![License: CC BY-ND 4.0](https://img.shields.io/badge/已完成-100%25-brightgreen.svg)](https://creativecommons.org/licenses/by-nd/4.0/legalcode)
 
-* Lesson 11 - [打包优化之体积优化](http://huziketang.com/books/react/lesson17)
-* Lesson 12 - [打包优化之增强缓存命中率](http://huziketang.com/books/react/lesson18)
+* Lesson 14 - [路由安装和基本使用](http://huziketang.com/books/react/lesson17)
+* Lesson 15 - [路由基本配置](http://huziketang.com/books/react/lesson18)
 * Lesson 13 - [打包优化之速度优化](http://huziketang.com/books/react/lesson19)
 * Lesson 14 - [打包优化之Tree-Shaking](http://huziketang.com/books/react/lesson8)
 * Lesson 15 - [打包优化之splitChunks](http://huziketang.com/books/react/lesson20)
