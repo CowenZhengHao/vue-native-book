@@ -2,6 +2,8 @@
 
 Vuex是一个专门为vue.js应用程序开发的状态管理模式。
 
+![](https://vuex.vuejs.org/vuex.png)
+
 **1、基本使用：**
 
 类似于vue-router，vuex的使用也是需要引入、定义store和导出store。
